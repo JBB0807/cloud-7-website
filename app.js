@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 
 // start listening
 app.listen(PORT, () => {
-  console.log(`Hello Express listening on port ${PORT}!`);
+  console.log(`Hello Express listening on http://localhost:${PORT}`);
 });
 
 
@@ -106,3 +106,5 @@ function getPlayerScore(id) {
 }
 
 module.exports = [getRankings, getPlayerInfo, getPlayerScore];
+
+
