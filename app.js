@@ -32,9 +32,11 @@ app.get("/", (req, res) => {
     "utf8"
   );
 
-  getPlayerScore("1");
+  let html = res.locals.header + body + res.locals.footer;
+  html = html.replaceAll("{pageName}", "Home Page");
 
-  res.send(res.locals.header + body + res.locals.footer);
+  res.send(html);
+  
 });
 
 // start listening
