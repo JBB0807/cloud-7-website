@@ -6,6 +6,7 @@ const path = require("path");
 const leaderboardRouter = require("./routes/leaderboardRouter");
 const profileRouter = require("./routes/profileRouter");
 const combineHTML = require("./middleware/combineHTML");
+const dbHelper  = require("./utils/dbHelper");
 
 const app = express();
 
@@ -32,11 +33,17 @@ app.get("/", (req, res) => {
     "utf8"
   );
 
+  console.log(dbHelper.getRankings());
+
   let html = res.locals.header + body + res.locals.footer;
-  html = html.replaceAll("{pageName}", "Home Page");
+  html = html.replaceAll("{pageName}", "HexTris");
+
+  //Replace the html variable with the data
+  //
+  //
 
   res.send(html);
-  
+
 });
 
 // start listening
