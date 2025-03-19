@@ -8,15 +8,30 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient();
 class dbHelper{};
 // AWS function to get the player score from cloud7_leaderboard
 //
+// function getRankings() {
+//     dynamoDB.scan({ TableName: "cloud7_leaderboard" }, (err, data) => {
+//         if (err) console.error("Error scanning table:", err);
+//         else {
+//             console.log("All items:", data.Items);
+//             return data.Items;      
+//         }
+//     });
+// }
+// Update getRankings function to return a Promise
 function getRankings() {
-    dynamoDB.scan({ TableName: "cloud7_leaderboard" }, (err, data) => {
-        if (err) console.error("Error scanning table:", err);
-        else {
-            console.log("All items:", data.Items);
-            return data.Items;      
+    return new Promise((resolve, reject) => {
+      dynamoDB.scan({ TableName: "cloud7_leaderboard" }, (err, data) => {
+        if (err) {
+          console.error("Error scanning table:", err);
+          reject(err);
+        } else {
+          console.log("All items:", data.Items);
+          resolve(data.Items);
         }
+      });
     });
-}
+  }
+
 
 // AWS function to get the player information from cloud7_player
 //
