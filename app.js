@@ -27,13 +27,11 @@ app.use("/profile", profileRouter);
 app.use(express.static("public"));
 
 // route for the site root
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   const body = fs.readFileSync(
     path.join(__dirname, "pages", "index.html"),
     "utf8"
   );
-
-  console.log(dbHelper.getRankings());
 
   let html = res.locals.header + body + res.locals.footer;
   html = html.replaceAll("{pageName}", "HexTris");
@@ -41,9 +39,17 @@ app.get("/", (req, res) => {
   //Replace the html variable with the data
   //
   //
+  let playerInfo = await dbHelper.getPlayerInfo("1");
+  let name = playerInfo[0].name;
+
+  html = html.replaceAll("{playerName}", name);
+
+  let playerScore = await dbHelper.getPlayerScore("1");
+  let score = playerScore[0].score;
+
+  html = html.replaceAll("{playerScore}", score);
 
   res.send(html);
-
 });
 
 // start listening
