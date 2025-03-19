@@ -2,25 +2,22 @@
 // AWS Functions
 //
 const AWS = require("aws-sdk");
+const e = require("express");
 AWS.config.update({ region: "us-west-2" });
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 class dbHelper{};
 // AWS function to get the player score from cloud7_leaderboard
 //
-function getRankings() {
-    dynamoDB.scan({ TableName: "cloud7_leaderboard" }, (err, data) => {
-        if (err) console.error("Error scanning table:", err);
-        else {
-            console.log("All items:", data.Items);
-            return data.Items;      
-        }
-    });
+async function getRankings() {
+    
+    const result = await dynamoDB.scan({ TableName: "cloud7_leaderboard" }).promise();
+    return result.Items;
 }
 
 // AWS function to get the player information from cloud7_player
 //
-function getPlayerInfo(id) {
+async function getPlayerInfo(id) {
     const params = {
         TableName: "cloud7_player",
         KeyConditionExpression: "playerId = :id",
@@ -29,18 +26,13 @@ function getPlayerInfo(id) {
         }
     };
 
-    dynamoDB.query(params, (err, data) => {
-        if (err) console.error("Error querying table:", err);
-        else {
-            console.log("Player info:", data.Items);
-            return data.Items;
-        }
-    });
+    const result = await dynamoDB.query(params).promise();
+    return result.Items;
 }
 
 // AWS function to get the player score from cloud7_score
 //
-function getPlayerScore(id) {
+async function getPlayerScore(id) {
     const params = {
         TableName: "cloud7_score",
         KeyConditionExpression: "playerId = :id",
@@ -49,13 +41,8 @@ function getPlayerScore(id) {
         }
     };
 
-    dynamoDB.query(params, (err, data) => {
-        if (err) console.error("Error querying table:", err);
-        else {
-            console.log("Player score:", data.Items);
-            return data.Items;
-        }
-    });
+    const result = await dynamoDB.query(params).promise();
+    return result.Items;
 }
 
 module.exports = {
