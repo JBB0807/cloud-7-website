@@ -15,6 +15,19 @@ async function getRankings() {
     return result.Items;
 }
 
+async function getPlayerRankInfo(id) {
+  const params = {
+      TableName: "cloud7_leaderboard",
+      KeyConditionExpression: "playerId = :id",
+      ExpressionAttributeValues: {
+          ":id": id
+      }
+  };
+
+  const result = await dynamoDB.query(params).promise();
+  return result.Items;
+}
+
 // AWS function to get the player information from cloud7_player
 //
 async function getPlayerInfo(id) {
@@ -61,5 +74,6 @@ module.exports = {
     getRankings,
     getPlayerInfo,
     getPlayerScore,
-    updateHeader
+    updateHeader,
+    getPlayerRankInfo
 };

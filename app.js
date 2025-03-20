@@ -12,6 +12,8 @@ const app = express();
 
 const logger = require("morgan");
 app.use(logger("dev"));
+app.use(express.urlencoded({ extended: true })); // Parses form data
+
 
 // Use environment variable if defined, or a fixed value if not.&nbsp;
 const PORT = process.env.PORT || 3000;
