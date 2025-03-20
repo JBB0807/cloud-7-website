@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{pageName}</title>
     <link rel="stylesheet" href="/styles/styles.css">
+    <script src="./countdown.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,10 +18,10 @@
             </ul>
         </nav>
         <div>
-            <h3>Season 7 Ends In: {timeRemaining}</h3>
+            <h3><span class="highlight">Season 7 Ends In</span> <span id="remaining-time">March 30, 2025</span></h3>
             <div>
-                <span>Current Leaders:</span>
-                <span>{playerName} : {playerScore}</span>
+                
+                <span><span class="highlight">Current Leader</span> {playerName} : {playerScore}</span>
             </div>
         </div>
     </header>

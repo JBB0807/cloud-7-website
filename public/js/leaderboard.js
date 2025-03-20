@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>${index + 1}</td>
-        <td>${player.playerName}</td>
+        <td>${player.name}</td>
         <td>${player.score}</td>
       `;
       leaderboardBody.appendChild(row);

@@ -12,6 +12,8 @@ const app = express();
 
 const logger = require("morgan");
 app.use(logger("dev"));
+app.use(express.urlencoded({ extended: true })); // Parses form data
+
 
 // Use environment variable if defined, or a fixed value if not.&nbsp;
 const PORT = process.env.PORT || 3000;
@@ -39,16 +41,7 @@ app.get("/", async (req, res) => {
   //Replace the html variable with the data
   //
   //
-  let playerInfo = await dbHelper.getPlayerInfo("1");
-  let name = playerInfo[0].name;
-
-  html = html.replaceAll("{playerName}", name);
-
-  let playerScore = await dbHelper.getPlayerScore("1");
-  let score = playerScore[0].score;
-
-  html = html.replaceAll("{playerScore}", score);
-
+  html = await dbHelper.updateHeader(html);
   res.send(html);
 });
 

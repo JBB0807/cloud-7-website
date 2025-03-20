@@ -1,4 +1,7 @@
 body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
     font-family: 'Arial', sans-serif;
     background-color: #1a1a1a;
     color: #f0f0f0;
@@ -142,12 +145,13 @@ main {
   }
   
   #leaderboardTable th {
+    color: #ffcc00;
     font-weight: bold;
     text-align: center;
   }
   
   #leaderboardTable tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #393939;
   }
 
   #leaderboardBody td {
@@ -159,6 +163,9 @@ main {
   }
   
 
+  .highlight{
+    color: #e6b800;
+  }
 
 /* //////// profile css  ///////// */
 
@@ -225,15 +232,59 @@ main {
     margin: 8px 0;
     color: white;
 }
-
-/* //////// profile css  end ///////// */
-
-
-
-/* ///////// media ////// */
-
 @media (max-width: 768px) {
     .profile-container {
         flex-direction: column;
     }
+}
+
+/* Login form styling */
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(35, 61, 255, 0.6);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    color: #ffcc00;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #f0f0f0;
+    font-size: 1em;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #e6b800;
 }

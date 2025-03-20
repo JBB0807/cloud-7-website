@@ -15,6 +15,19 @@ async function getRankings() {
     return result.Items;
 }
 
+async function getPlayerRankInfo(id) {
+  const params = {
+      TableName: "cloud7_leaderboard",
+      KeyConditionExpression: "playerId = :id",
+      ExpressionAttributeValues: {
+          ":id": id
+      }
+  };
+
+  const result = await dynamoDB.query(params).promise();
+  return result.Items;
+}
+
 // AWS function to get the player information from cloud7_player
 //
 async function getPlayerInfo(id) {
@@ -45,9 +58,22 @@ async function getPlayerScore(id) {
     return result.Items;
 }
 
+async function updateHeader(html){
+  let topPlayer = await getRankings();
+  let name = topPlayer[0].name;
+  let score = topPlayer[0].score;
+
+  html = html.replaceAll("{playerName}", name);
+  html = html.replaceAll("{playerScore}", score);
+
+  return html;
+}
+
 module.exports = {
     dbHelper,
     getRankings,
     getPlayerInfo,
-    getPlayerScore
+    getPlayerScore,
+    updateHeader,
+    getPlayerRankInfo
 };
