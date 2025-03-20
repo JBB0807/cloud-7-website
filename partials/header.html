@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Node.JS Site</title>
+    <title>{pageName}</title>
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <header>
-        <h1>My Node.JS Site</h1>
+        <h1>{pageName}</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -16,5 +16,12 @@
                 <li><a href="/leaderboard">Scores | Leaderboard</a></li>
             </ul>
         </nav>
+        <div>
+            <h3>Season 7 Ends In: {timeRemaining}</h3>
+            <div>
+                <span>Current Leaders:</span>
+                <span>{playerName} : {playerScore}</span>
+            </div>
+        </div>
     </header>
     <main>

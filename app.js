@@ -6,6 +6,7 @@ const path = require("path");
 const leaderboardRouter = require("./routes/leaderboardRouter");
 const profileRouter = require("./routes/profileRouter");
 const combineHTML = require("./middleware/combineHTML");
+const dbHelper  = require("./utils/dbHelper");
 
 const app = express();
 
@@ -26,15 +27,29 @@ app.use("/profile", profileRouter);
 app.use(express.static("public"));
 
 // route for the site root
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   const body = fs.readFileSync(
     path.join(__dirname, "pages", "index.html"),
     "utf8"
   );
 
-  getPlayerScore("1");
+  let html = res.locals.header + body + res.locals.footer;
+  html = html.replaceAll("{pageName}", "HexTris");
 
-  res.send(res.locals.header + body + res.locals.footer);
+  //Replace the html variable with the data
+  //
+  //
+  let playerInfo = await dbHelper.getPlayerInfo("1");
+  let name = playerInfo[0].name;
+
+  html = html.replaceAll("{playerName}", name);
+
+  let playerScore = await dbHelper.getPlayerScore("1");
+  let score = playerScore[0].score;
+
+  html = html.replaceAll("{playerScore}", score);
+
+  res.send(html);
 });
 
 // start listening
@@ -106,5 +121,3 @@ function getPlayerScore(id) {
 }
 
 module.exports = [getRankings, getPlayerInfo, getPlayerScore];
-
-
