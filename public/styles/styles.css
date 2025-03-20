@@ -126,3 +126,35 @@ main {
     color: #f0f0f0;
     font-size: 0.9em;
 }
+
+/* Leaderboard styling */
+#leaderboardTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #leaderboardTable th,
+  #leaderboardTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  #leaderboardTable th {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #leaderboardTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #leaderboardBody td {
+    text-align: center;
+  }
+ 
+  .container {
+    text-align: center;
+  }
+  
