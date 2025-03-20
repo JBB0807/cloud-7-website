@@ -4,8 +4,9 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const contactRouter = express.Router();
-const { getRankings } = require("../utils/dbHelper");
 const leaderboardRouter = express.Router();
+const dbHelper  = require("../utils/dbHelper");
+
 
 // contactRouter.get("/", (req, res) => {
 //   const body = fs.readFileSync(
@@ -18,7 +19,7 @@ const leaderboardRouter = express.Router();
 
 // module.exports = contactRouter;
 
-leaderboardRouter.get("/", (req, res) => {
+leaderboardRouter.get("/", async (req, res) => {
   const body = fs.readFileSync(
     path.join(__dirname, "..", "pages", "leaderboard.html"),
     "utf8"
@@ -27,12 +28,14 @@ leaderboardRouter.get("/", (req, res) => {
   let html = res.locals.header + body + res.locals.footer;
   html = html.replaceAll("{pageName}", "Leaderboard");
 
+  html = await dbHelper.updateHeader(html);
+
   res.send(html);
 });
 
 leaderboardRouter.get("/data", async (req, res) => {
   try {
-    const rankings = await getRankings();
+    const rankings = await dbHelper.getRankings();
     res.json(rankings);
   } catch (error) {
     console.error("Error fetching leaderboard data:", error);

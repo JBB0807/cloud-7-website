@@ -4,14 +4,36 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const projectsRouter = express.Router();
+const dbHelper = require("../utils/dbHelper");
 
-projectsRouter.get("/", (req, res) => {
+projectsRouter.get("/", async (req, res) => {
+
+  const body = fs.readFileSync(
+    path.join(__dirname, "..", "pages", "login.html"),
+    "utf8"
+  );
+
+  let html = res.locals.header + body + res.locals.footer;
+  html = html.replaceAll("{pageName}", "Profile");
+
+  html = await dbHelper.updateHeader(html);
+
+  res.send(html);
+
+});
+
+projectsRouter.post("/login", async (req, res) => {
   const body = fs.readFileSync(
     path.join(__dirname, "..", "pages", "profile.html"),
     "utf8"
   );
 
-  res.send(res.locals.header + body + res.locals.footer);
+  let html = res.locals.header + body + res.locals.footer;
+  html = html.replaceAll("{pageName}", "Profile");
+
+  html = await dbHelper.updateHeader(html);
+
+  res.send(html);
 });
 
 module.exports = projectsRouter;
