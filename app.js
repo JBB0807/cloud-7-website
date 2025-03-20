@@ -54,5 +54,5 @@ app.get("/", async (req, res) => {
 
 // start listening
 app.listen(PORT, () => {
-  console.log(`Hello Express listening on port ${PORT}!`);
+  console.log(`Hello Express listening on http://localhost:${PORT}`);
 });
