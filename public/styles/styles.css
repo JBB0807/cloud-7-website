@@ -162,29 +162,40 @@ main {
 
 /* //////// profile css  ///////// */
 
+.profile-main{
+
+    background-color: #333;
+}
+
 .profile-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-    border: blue 2px solid;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px auto;
+    width: 100%;
+    
+    background-color: #333;
+    
+    text-align: center;
+    padding: 10px 0; 
+    margin: 0 auto;
 }
 
 
 .profile-card, .profile-card-info {
-    background-color:white;
+    background-color: #484545;
     border-radius: 12px;
-    color: black;
-    padding: 50px;
+    color: white;
     width: 500px;
-    height: auto;
+    height: 300px;
     margin: 15px;
     text-align: center;
     box-shadow: 0 0 20px rgba(35 61 255 / 0.6);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-card:hover, .profile-card-info:hover {
@@ -212,7 +223,7 @@ main {
 .profile-card-info p {
     font-size: 18px;
     margin: 8px 0;
-    color: black;
+    color: white;
 }
 
 /* //////// profile css  end ///////// */
