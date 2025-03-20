@@ -145,7 +145,7 @@ main {
   }
   
   #leaderboardTable th {
-    color: #ffcc00s;
+    color: #ffcc00;
     font-weight: bold;
     text-align: center;
   }
@@ -166,3 +166,135 @@ main {
   .highlight{
     color: #e6b800;
   }
+
+/* //////// profile css  ///////// */
+
+.profile-main{
+
+    background-color: #333;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    background-color: #333;
+    
+    text-align: center;
+    padding: 10px 0; 
+    margin: 0 auto;
+}
+
+
+.profile-card, .profile-card-info {
+    background-color: #484545;
+    border-radius: 12px;
+    color: white;
+    width: 500px;
+    height: 300px;
+    margin: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(35 61 255 / 0.6);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card:hover, .profile-card-info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 103, 27,  0.7);
+}
+
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 10px solid #38EBFF;
+    margin-bottom: 15px;
+}
+
+
+.profile-card-info h3 {
+    font-size: 22px;
+    color: #FFBB28;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.profile-card-info p {
+    font-size: 18px;
+    margin: 8px 0;
+    color: white;
+}
+
+/* //////// profile css  end ///////// */
+
+
+
+/* ///////// media ////// */
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+}
+
+
+/* Login form styling */
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(35, 61, 255, 0.6);
+    max-width: 400px;
+    margin: 20px auto;
+    color: #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    color: #ffcc00;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #f0f0f0;
+    font-size: 1em;
+}
+
+.form-control:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #e6b800;
+}
