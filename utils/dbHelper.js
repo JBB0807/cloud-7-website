@@ -45,9 +45,21 @@ async function getPlayerScore(id) {
     return result.Items;
 }
 
+async function updateHeader(html){
+  let topPlayer = await getRankings();
+  let name = topPlayer[0].name;
+  let score = topPlayer[0].score;
+
+  html = html.replaceAll("{playerName}", name);
+  html = html.replaceAll("{playerScore}", score);
+
+  return html;
+}
+
 module.exports = {
     dbHelper,
     getRankings,
     getPlayerInfo,
-    getPlayerScore
+    getPlayerScore,
+    updateHeader
 };

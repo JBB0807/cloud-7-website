@@ -1,4 +1,7 @@
 body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
     font-family: 'Arial', sans-serif;
     background-color: #1a1a1a;
     color: #f0f0f0;
@@ -142,12 +145,13 @@ main {
   }
   
   #leaderboardTable th {
+    color: #ffcc00s;
     font-weight: bold;
     text-align: center;
   }
   
   #leaderboardTable tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #393939;
   }
 
   #leaderboardBody td {
@@ -158,3 +162,7 @@ main {
     text-align: center;
   }
   
+
+  .highlight{
+    color: #e6b800;
+  }
