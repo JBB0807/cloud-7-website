@@ -1,0 +1,20 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title #{pageName}
+        link(rel="stylesheet" href="/styles/styles.css")
+        script(src="./countdown.js" defer)
+    body
+        include partials/header.pug
+        main
+        .container
+            form(action="./profile/login" method="post")
+                .form-group
+                    label(for="userid") User Id:
+                    input#userid.form-control(type="text" name="userid", required)
+                .form-group
+                    label(for="password") Password:
+                    input#password.form-control(type="password" name="password", required)
+                button.btn.btn-primary(type="submit") Login
+        include partials/footer.pug

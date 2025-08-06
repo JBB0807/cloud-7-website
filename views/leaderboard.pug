@@ -1,0 +1,20 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{pageName}
+    link(rel="stylesheet" href="/styles/styles.css")
+    script(src="./countdown.js" defer)
+  body
+    include partials/header.pug
+    main
+      .div.container
+        h1 Leaderboard
+        table#leaderboardTable
+          thead
+            tr
+              th Rank
+              th Player
+              th Score
+          tbody#leaderboardBody
+    include partials/footer.pug

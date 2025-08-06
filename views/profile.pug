@@ -1,0 +1,21 @@
+.div.profile-container
+  .profile-card
+    h2 Welcome, 
+      span#username {playerName}
+    //- <img>
+    p Rank: 
+      span#rank {rank}
+    p Rank Score: 
+      span#rankScore {score}
+    //- <p>High Score: <span id="highScore">Loading...</span></p>
+    p Rank Achieved: 
+      span#rankDate Loading...
+  .profile-card-info
+    h3 Game statistics
+    p High Score: 
+      span#highScore Loading...
+    p Last played: 
+      span#lastPlayed Loading...
+    p Total Games Played: 
+      span#gamesPlayed Loading...
+script(src="/public/profile.js")

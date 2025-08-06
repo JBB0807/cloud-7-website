@@ -8,19 +8,7 @@ const projectsRouter = express.Router();
 const dbHelper = require("../utils/dbHelper");
 
 projectsRouter.get("/", async (req, res) => {
-
-  const body = fs.readFileSync(
-    path.join(__dirname, "..", "pages", "login.html"),
-    "utf8"
-  );
-
-  let html = res.locals.header + body + res.locals.footer;
-  html = html.replaceAll("{pageName}", "Profile");
-
-  html = await dbHelper.updateHeader(html);
-
-  res.send(html);
-
+  res.render("login", { pageName: "HexTrix Profile" });
 });
 
 projectsRouter.post("/login", async (req, res) => {
@@ -35,7 +23,7 @@ projectsRouter.post("/login", async (req, res) => {
 
   let playerRankInfo = await dbHelper.getPlayerRankInfo(userId);
   console.log("Player Rank Info:", playerRankInfo);
-  if(playerRankInfo){
+  if (playerRankInfo) {
     html = html.replaceAll("{playerName}", playerRankInfo[0].name);
     html = html.replaceAll("{rank}", playerRankInfo[0].rank);
     html = html.replaceAll("{score}", playerRankInfo[0].score);
