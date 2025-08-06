@@ -8,7 +8,8 @@ const projectsRouter = express.Router();
 const dbHelper = require("../utils/dbHelper");
 
 projectsRouter.get("/", async (req, res) => {
-  res.render("login", { pageName: "HexTrix Profile" });
+  const leader = await dbHelper.getTopPlayer();
+  res.render("login", { pageName: "HexTrix Profile", leader: leader });
 });
 
 projectsRouter.post("/login", async (req, res) => {

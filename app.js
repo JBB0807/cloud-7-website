@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const leaderboardRouter = require("./routes/leaderboardRouter");
 const profileRouter = require("./routes/profileRouter");
+const dbHelper = require("./utils/dbHelper");
 
 const app = express();
 
@@ -26,7 +27,8 @@ app.use(express.static("public"));
 
 // route for the site root
 app.get("/", async (req, res) => {
-  res.render("index", { pageName: "HexTris" });
+  const leader = await dbHelper.getTopPlayer();
+  res.render("index", { pageName: "HexTris", leader: leader });
 });
 
 // start listening

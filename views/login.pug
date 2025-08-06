@@ -1,12 +1,13 @@
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title #{pageName}
         link(rel="stylesheet" href="/styles/styles.css")
         script(src="./countdown.js" defer)
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
     body
         include partials/header.pug
+        +topPlayer(leader.playerId, leader.score)
         main
         .container
             form(action="./profile/login" method="post")

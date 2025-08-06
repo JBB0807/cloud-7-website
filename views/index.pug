@@ -1,19 +1,20 @@
 html(lang="en")
   head
     meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title #{pageName}
     link(rel="stylesheet" href="/styles/styles.css")
     script(src="./countdown.js" defer)
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
   body
     include partials/header.pug
+    +topPlayer(leader.playerId, leader.score)
     main
     .container
       .main-content
         img(src="../images/Hextris.webp")
         .img-subtitle
           p A fast paced puzzle game inspired by Tetris!
-          a.btn-play(href="#") Play Now
+          a.btn-play(href="https://jbb0807.github.io/hextris/" target="_blank" rel="noopener") Play Now
       .features
         .feature
           h2 Easy to Learn

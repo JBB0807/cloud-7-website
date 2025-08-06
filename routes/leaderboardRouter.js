@@ -8,7 +8,11 @@ const leaderboardRouter = express.Router();
 const dbHelper = require("../utils/dbHelper");
 
 leaderboardRouter.get("/", async (req, res) => {
-  res.render("leaderboard", { pageName: "Leaderboard" });
+  const leader = await dbHelper.getTopPlayer();
+
+  const rankings = await dbHelper.getRankings();
+  console.log("Rankings:", rankings);
+  res.render("leaderboard", { pageName: "Leaderboard", leader: leader, rankings: rankings });
 });
 
 module.exports = leaderboardRouter;
