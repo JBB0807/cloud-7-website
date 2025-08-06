@@ -1,0 +1,26 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title #{pageName}
+    link(rel="stylesheet" href="/styles/styles.css")
+    script(src="./countdown.js" defer)
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
+  body
+    include partials/header.pug
+    +topPlayer(leader.playerId, leader.score)
+    main
+      .div.container
+        h1 Leaderboard
+        table#leaderboardTable
+          thead
+            tr
+              th Rank
+              th Player
+              th Score
+          tbody
+            each player, index in rankings
+              tr
+                td #{index + 1}
+                td #{player.playerId}
+                td #{player.score}
+    include partials/footer.pug

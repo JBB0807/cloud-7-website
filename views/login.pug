@@ -1,0 +1,21 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title #{pageName}
+        link(rel="stylesheet" href="/styles/styles.css")
+        script(src="./countdown.js" defer)
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
+    body
+        include partials/header.pug
+        +topPlayer(leader.playerId, leader.score)
+        main
+        .container
+            form(action="./profile/login" method="post")
+                .form-group
+                    label(for="userid") User Id:
+                    input#userid.form-control(type="text" name="userid", required)
+                .form-group
+                    label(for="password") Password:
+                    input#password.form-control(type="password" name="password", required)
+                button.btn.btn-primary(type="submit") Login
+        include partials/footer.pug

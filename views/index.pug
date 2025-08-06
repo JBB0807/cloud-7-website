@@ -1,0 +1,28 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title #{pageName}
+    link(rel="stylesheet" href="/styles/styles.css")
+    script(src="./countdown.js" defer)
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
+  body
+    include partials/header.pug
+    +topPlayer(leader.playerId, leader.score)
+    main
+    .container
+      .main-content
+        img(src="../images/Hextris.webp")
+        .img-subtitle
+          p A fast paced puzzle game inspired by Tetris!
+          a.btn-play(href="https://jbb0807.github.io/hextris/" target="_blank" rel="noopener") Play Now
+      .features
+        .feature
+          h2 Easy to Learn
+          p Simple controls and intuitive gameplay.
+        .feature
+          h2 Challenging
+          p Test your reflexes and strategic thinking.
+        .feature
+          h2 Free to Play
+          p Enjoy the game without any cost.
+    include partials/footer.pug
