@@ -34,7 +34,7 @@ projectsRouter.post("/login", async (req, res) => {
   html = html.replaceAll("{pageName}", "Profile");
 
   let playerRankInfo = await dbHelper.getPlayerRankInfo(userId);
-
+  console.log("Player Rank Info:", playerRankInfo);
   if(playerRankInfo){
     html = html.replaceAll("{playerName}", playerRankInfo[0].name);
     html = html.replaceAll("{rank}", playerRankInfo[0].rank);

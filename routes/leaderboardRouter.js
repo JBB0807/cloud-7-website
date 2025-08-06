@@ -5,8 +5,7 @@ const path = require("path");
 const express = require("express");
 const contactRouter = express.Router();
 const leaderboardRouter = express.Router();
-const dbHelper  = require("../utils/dbHelper");
-
+const dbHelper = require("../utils/dbHelper");
 
 // contactRouter.get("/", (req, res) => {
 //   const body = fs.readFileSync(
@@ -15,7 +14,6 @@ const dbHelper  = require("../utils/dbHelper");
 //   );
 //   res.send(res.locals.header + body + res.locals.footer);
 // });
-
 
 // module.exports = contactRouter;
 
@@ -29,6 +27,21 @@ leaderboardRouter.get("/", async (req, res) => {
   html = html.replaceAll("{pageName}", "Leaderboard");
 
   html = await dbHelper.updateHeader(html);
+
+  const rankings = await dbHelper.getRankings();
+
+  const leaderboardBody = $("#leaderboardBody");
+  leaderboardBody.innerHTML = "";
+
+  rankings.forEach((player, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${player.playerId}</td>
+        <td>${player.score}</td>
+      `;
+    leaderboardBody.appendChild(row);
+  });
 
   res.send(html);
 });
