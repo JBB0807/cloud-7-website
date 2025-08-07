@@ -1,20 +1,19 @@
-mixin topPlayer(playerId, score)
-    header
-        h1 HexTris
-        nav
-            ul
-                li
-                    a(href="/") Home
-                li
-                    a(href="/profile") Gamer Profile
-                li
-                    a(href="/leaderboard") Scores | Leaderboard
+header
+    h1 HexTris
+    nav
+        ul
+            li
+                a(href="/") Home
+            li
+                a(href="/profile") Gamer Profile
+            li
+                a(href="/leaderboard") Scores | Leaderboard
+    div
+        h3
+            span.highlight Season 7 Ends In
+            |  
+            span#remaining-time April 30, 2025
         div
-            h3
-                span.highlight Season 7 Ends In
-                |  
-                span#remaining-time April 30, 2025
-            div
-                span
-                    span.highlight Current Leader
-                    |  #{playerId} : #{score}
+            span
+                span.highlight Current Leader
+                |  #{headerData.playerId} : #{headerData.score}
