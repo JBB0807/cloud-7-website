@@ -7,7 +7,6 @@ html(lang="en")
         script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
     body
         include partials/header.pug
-        +topPlayer(leader.playerId, leader.score)
         main
         .container
             form(action="./profile/login" method="post")

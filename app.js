@@ -4,9 +4,12 @@ const express = require("express");
 const path = require("path");
 const leaderboardRouter = require("./routes/leaderboardRouter");
 const profileRouter = require("./routes/profileRouter");
-const dbHelper = require("./utils/dbHelper");
+const headerData = require("./middleware/headerData");
 
 const app = express();
+
+// Attach header data to all requests
+app.use(headerData);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -27,8 +30,7 @@ app.use(express.static("public"));
 
 // route for the site root
 app.get("/", async (req, res) => {
-  const leader = await dbHelper.getTopPlayer();
-  res.render("index", { pageName: "HexTris", leader: leader });
+  res.render("index", { pageName: "HexTris"});
 });
 
 // start listening
