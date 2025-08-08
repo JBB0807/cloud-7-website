@@ -536,3 +536,131 @@ footer {
   color: #f0f0f0;
   font-size: 0.9em;
 }
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+        font-size: 1em;
+        padding: 0;
+    }
+
+    header h1,
+    .main-content h1,
+    #leaderboard-container h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    header div {
+        padding: 10px 0;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .feature {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .main-content img {
+        max-width: 100%;
+        width: 220px;
+    }
+
+    #main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    #profile-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .profile-card {
+        width: 90vw;
+        height: auto;
+        margin: 10px 0;
+        padding: 15px 0;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-width: 6px;
+    }
+
+    #login-container {
+        padding: 10px;
+    }
+
+    .auth-form {
+        max-width: 95vw;
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    .tab-list {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    #verify-container {
+        padding: 15px 5px;
+    }
+
+    #leaderboard-container {
+        padding: 10px 5px;
+    }
+
+    #leaderboardTable th,
+    #leaderboardTable td {
+        font-size: 0.95em;
+        padding: 8px 4px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+
+    .main-content img {
+        width: 140px;
+    }
+
+    .profile-card {
+        width: 98vw;
+        padding: 10px 0;
+    }
+
+    .auth-form {
+        padding: 5px;
+    }
+
+    .tab-list .tab {
+        font-size: 0.95em;
+        padding: 10px 8px;
+    }
+}
