@@ -4,17 +4,40 @@ html(lang="en")
         title #{pageName}
         link(rel="stylesheet" href="/styles/styles.css")
         script(src="./countdown.js" defer)
+        script(src="/scripts/loginTab.js" defer)
         script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
     body
         include partials/header.pug
         main
-        .container
-            form(action="./profile/login" method="post")
-                .form-group
-                    label(for="userid") User Id:
-                    input#userid.form-control(type="text" name="userid", required)
-                .form-group
-                    label(for="password") Password:
-                    input#password.form-control(type="password" name="password", required)
-                button.btn.btn-primary(type="submit") Login
+            .container#login-container
+                ul.tab-list
+                    li.tab.active(data-tab="login") Login
+                    li.tab(data-tab="signup") Sign Up
+                .tab-content
+                    // Login Tab
+                    .tab-pane#login(style="display:block;").auth-form
+                        form(action="/auth/login" method="post")
+                            .form-group
+                            label(for="playerId") Player Id:
+                            input#playerId.form-control(type="text" name="playerId" required)
+                            .form-group
+                            label(for="password") Password:
+                            input#password.form-control(type="password" name="password" required)
+                            button.btn.btn-primary(type="submit") Login
+                    // Sign Up Tab
+                    .tab-pane#signup(style="display:none;").auth-form
+                        form(action="/auth/signup" method="post")
+                            .form-group
+                            label(for="new_playerId") Player Id:
+                            input#new_playerId.form-control(type="text" name="playerId" required)
+                            .form-group
+                            label(for="new_password") Password:
+                            input#new_password.form-control(type="password" name="password" required minlength="6")
+                            .form-group
+                            label(for="confirm_password") Confirm Password:
+                            input#confirm_password.form-control(type="password" name="confirm_password" required minlength="6" oninput="this.setCustomValidity(this.value !== document.getElementById('new_password').value ? 'Passwords do not match' : '')")
+                            .form-group
+                            label(for="email") Email:
+                            input#email.form-control(type="email" name="email" required)
+                            button.btn.btn-primary(type="submit") Sign Up
         include partials/footer.pug

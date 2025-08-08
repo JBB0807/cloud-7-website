@@ -1,0 +1,20 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title #{pageName}
+        link(rel="stylesheet" href="/styles/styles.css")
+        script(src="./countdown.js" defer)
+        script(src="/scripts/loginTab.js" defer)
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
+    body
+        include partials/header.pug
+        main
+            .container#verify-container
+                h1 Verify Your Account
+                p Please enter the verification code sent to your email.
+                form(method="post", action="./verify")
+                    input(type="hidden", name="playerId", value=playerId)
+                    label(for="code") Verification Code:
+                    input(type="text", name="code", id="code", required)
+                    button(type="submit") Submit
+        include partials/footer.pug
