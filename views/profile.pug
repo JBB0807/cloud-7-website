@@ -1,20 +1,31 @@
-.div.profile-container
-  .profile-card
-    h2 Welcome, 
-      span#username {playerName}
-    //- <img>
-    p Rank: 
-      span#rank {rank}
-    p Rank Score: 
-      span#rankScore {score}
-    //- <p>High Score: <span id="highScore">Loading...</span></p>
-    p Rank Achieved: 
-      span#rankDate Loading...
-  .profile-card-info
-    h3 Game statistics
-    p High Score: 
-      span#highScore Loading...
-    p Last played: 
-      span#lastPlayed Loading...
-    p Total Games Played: 
-      span#gamesPlayed Loading...
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title #{pageName}
+        link(rel="stylesheet" href="/styles/styles.css")
+        script(src="./countdown.js" defer)
+        script(src="/scripts/loginTab.js" defer)
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous")
+    body
+        include partials/header.pug
+        main
+          .container#profile-container
+            .profile-card
+              h3 Welcome, 
+                span#username #{playerId}
+              //- <img>
+              p Rank: 
+                span#rank #{rank}
+              p Score: 
+                span#rankScore #{score}
+
+              form(action="/auth/logout", method="post")
+                button(type="submit")#logout Logout
+            .profile-card
+              h3 Game statistics
+              p Coming Soon... 
+        include partials/footer.pug
+
+
+
+

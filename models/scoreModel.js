@@ -8,7 +8,6 @@ require("dotenv").config();
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 module.exports = {
-  
   // AWS function to get the top player cloud7_score
   async getTopPlayer() {
     const params = {
@@ -22,23 +21,34 @@ module.exports = {
     return result.Items[0];
   },
 
-  // AWS function to get the player rankings from cloud7_scor
+  // AWS function to get the player rankings from cloud7_score
   async getRankings() {
     const result = await dynamoDB.scan({ TableName: "cloud7_score" }).promise();
     return result.Items;
   },
 
-  async getPlayerRankInfo(id) {
+  // AWS function to get the player rank based on playerId and its score
+  async getPlayerRank(playerId, score) {
+    if (!playerId || !score) {
+      return null; // Return null if playerId or score is not provided
+    }
+
     const params = {
       TableName: "cloud7_score",
-      KeyConditionExpression: "playerId = :id",
+      KeyConditionExpression: "gsiPartitionKey = :pk AND scoreNegative <= :negScore",
       ExpressionAttributeValues: {
-        ":id": id,
+        ":pk": "leaderboard",
+        ":negScore": -score,
       },
+      IndexName: "LeaderboardIndex",
+      ScanIndexForward: true, // Sort in descending order
     };
 
     const result = await dynamoDB.query(params).promise();
-    return result.Items;
+
+    //get the rank of the player
+    const playerRank = result.Items.findIndex(item => item.playerId === playerId) + 1;
+    return playerRank > 0 ? playerRank : null;
   },
 
   // AWS function to get the player information
