@@ -5,7 +5,7 @@ const path = require("path");
 const express = require("express");
 const contactRouter = express.Router();
 const leaderboardRouter = express.Router();
-const leaderBoardController = require("../controllers/LeaderboardController");
+const leaderBoardController = require("../controllers/leaderboardController");
 
 leaderboardRouter.get("/", leaderBoardController.getLeaderBoard);
 
