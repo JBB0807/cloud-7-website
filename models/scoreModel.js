@@ -23,7 +23,17 @@ module.exports = {
 
   // AWS function to get the player rankings from cloud7_score
   async getRankings() {
-    const result = await dynamoDB.scan({ TableName: "cloud7_score" }).promise();
+    const params = {
+      TableName: "cloud7_score",
+      KeyConditionExpression: "gsiPartitionKey = :pk",
+      ExpressionAttributeValues: {
+        ":pk": "leaderboard",
+      },
+      IndexName: "LeaderboardIndex",
+      ScanIndexForward: true, // Sort in descending order
+    };
+
+    const result = await dynamoDB.query(params).promise();
     return result.Items;
   },
 
@@ -47,7 +57,7 @@ module.exports = {
     const result = await dynamoDB.query(params).promise();
 
     //get the rank of the player
-    const playerRank = result.Items.findIndex(item => item.playerId === playerId) + 1;
+    const playerRank = result.Items.findIndex(item => item.playerId === playerId.trim().toLowerCase()) + 1;
     return playerRank > 0 ? playerRank : null;
   },
 
@@ -57,7 +67,7 @@ module.exports = {
       TableName: "cloud7_score",
       KeyConditionExpression: "playerId = :id",
       ExpressionAttributeValues: {
-        ":id": id,
+      ":id": id.trim().toLowerCase(),
       },
     };
 
