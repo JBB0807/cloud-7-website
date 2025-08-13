@@ -10,11 +10,16 @@ html(lang="en")
         include partials/header.pug
         main
             .container#verify-container
-                h1 Verify Your Account
-                p Please enter the verification code sent to your email.
-                form(method="post", action="./verify")
-                    input(type="hidden", name="playerId", value=playerId)
-                    label(for="code") Verification Code:
-                    input(type="text", name="code", id="code", required)
-                    button(type="submit") Submit
+                if !verified
+                    h1 Verify Your Account
+                    p Please enter the verification code sent to your email.
+                    form(method="post" action="./verify")
+                        input(type="hidden" name="playerId", value=playerId)
+                        label(for="code") Verification Code:
+                        input(type="text" name="code" id="code", required)
+                        button(type="submit") Submit
+                else
+                    h1 Account Verified
+                    p Your account has been successfully verified. You can now log in.
+                    a.btn-primary(href="/auth/login") Go to Login
         include partials/footer.pug
