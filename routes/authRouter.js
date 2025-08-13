@@ -35,7 +35,6 @@ router.post("/login", async (req, res) => {
         console.error("Session save error:", err);
         return res.status(500).send("Server error");
       }
-      console.log("User logged in:", req.session.user);
 
       res.redirect("/profile");
     });
