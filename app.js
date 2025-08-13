@@ -10,6 +10,8 @@ const headerData = require("./middleware/headerData");
 
 const isProduction = process.env.NODE_ENV == "production";
 
+console.log("Environment:", isProduction ? "Production" : "Development");
+
 const app = express();
 
 app.set('trust proxy', 1);
