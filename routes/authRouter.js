@@ -21,12 +21,22 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
   const { playerId, password } = req.body;
   try {
-    const result = await congnito.login(playerId.trim().toLowerCase(), password);
+    const result = await congnito.login(
+      playerId.trim().toLowerCase(),
+      password
+    );
     req.session.user = {
       playerId,
       idToken: result.AuthenticationResult.IdToken,
     };
-    res.redirect("/profile");
+
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).send("Server error");
+      }
+      res.redirect("/profile");
+    });
   } catch (err) {
     res.status(401).send(`❌ Login failed: ${err.message}`);
   }
