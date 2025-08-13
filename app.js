@@ -26,7 +26,7 @@ app.use(session({
       sameSite: isProduction ? "none" : "lax", // or 'none' if using cross-origin
       secure: isProduction, // only true in production over HTTPS
       httpOnly: isProduction, // true if you want to prevent client-side JavaScript from accessing the cookie
-      domain: isProduction ? ".jbbalahadia.ca" : undefined, // set to your domain if needed
+      domain: isProduction ? "hextrixweb.jbbalahadia.ca" : undefined, // set to your domain if needed
     },
 }));
 
