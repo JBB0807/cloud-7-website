@@ -10,6 +10,8 @@ const headerData = require("./middleware/headerData");
 
 const isProduction = process.env.NODE_ENV == "production";
 
+console.log("Environment:", isProduction ? "Production" : "Development");
+
 const app = express();
 
 app.set('trust proxy', 1);
@@ -23,10 +25,10 @@ app.use(session({
   cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       //keep production security settings below disable for the mean-time because we need to integrate redis session for cross-origin to work properly
-      sameSite: isProduction ? "none" : "lax", // or 'none' if using cross-origin
+      sameSite: "lax", // or 'none' if using cross-origin
       secure: isProduction, // only true in production over HTTPS
       httpOnly: isProduction, // true if you want to prevent client-side JavaScript from accessing the cookie
-      domain: isProduction ? ".jbbalahadia.ca" : undefined, // set to your domain if needed
+      domain: isProduction ? "hextrixweb.jbbalahadia.ca" : undefined, // set to your domain if needed
     },
 }));
 
