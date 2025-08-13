@@ -21,7 +21,7 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
   const { playerId, password } = req.body;
   try {
-    const result = await congnito.login(playerId, password);
+    const result = await congnito.login(playerId.trim().toLowerCase(), password);
     req.session.user = {
       playerId,
       idToken: result.AuthenticationResult.IdToken,
