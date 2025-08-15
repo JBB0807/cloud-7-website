@@ -33,13 +33,13 @@ router.post("/login", async (req, res) => {
     req.session.save((err) => {
       if (err) {
         console.error("Session save error:", err);
-        return res.status(500).send("Server error");
+        res.render("login", { pageName: "Login", errorMessage: "Session error, please try again." });
       }
 
       res.redirect("/profile");
     });
   } catch (err) {
-    res.status(401).send(`❌ Login failed: ${err.message}`);
+    res.render("login", { pageName: "Login", errorMessage: err.message });
   }
 });
 
@@ -54,6 +54,8 @@ router.post("/verify", async (req, res) => {
   const result = await congnito.confirmSignUp(req.body.playerId, req.body.code);
   if (result) {
     res.render("verify", { pageName: "Account Verified", verified: true });
+  } else {
+    res.render("verify", { pageName: "Verify Account", playerId: req.body.playerId, errorMessage: "Verification failed. Please try again." });
   }
 });
 

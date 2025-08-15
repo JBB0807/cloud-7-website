@@ -18,6 +18,7 @@ html(lang="en")
                         label(for="code") Verification Code:
                         input(type="text" name="code" id="code", required)
                         button(type="submit") Submit
+                        div #{errorMessage}
                 else
                     h1 Account Verified
                     p Your account has been successfully verified. You can now log in.
